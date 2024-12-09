@@ -1,0 +1,13 @@
+.playing-card {
+    width: 120px;
+    height: 160px;
+    border:solid 1px black;
+    background:white;
+    margin:5px;
+    padding:10px;
+    text-align: center;
+}
+
+.cards {
+    display:flex;
+}
