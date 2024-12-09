@@ -1,3 +1,4 @@
+
 .modal1 {
     position: fixed;
     bottom: 20px; 
@@ -25,3 +26,18 @@
     gap: 35px;
     margin-top: 0;
 }
+
+.playing-card {
+    width: 120px;
+    height: 160px;
+    border:solid 1px black;
+    background:white;
+    margin:5px;
+    padding:10px;
+    text-align: center;
+}
+
+.cards {
+    display:flex;
+}
+
