@@ -1,5 +1,5 @@
 //player hand that will recieve values from 1-13
-var playerHand = [1,10,10,3];
+var playerHand = [];
 
 //dealer hand that will recieve values from 1-13
 var dealerHand = [];
