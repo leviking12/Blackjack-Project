@@ -1,11 +1,11 @@
 //player hand that will recieve values from 1-13
-var playerHand = [];
+var playerHand = [1,10,10,3];
+
 //dealer hand that will recieve values from 1-13
 var dealerHand = [];
 
 //all of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
-
 
 //Gives the player and dealer 2 cards
 function startGame() {
@@ -29,7 +29,30 @@ function stand() {
 //If Player is under 21, continue.
 //if Player is 21, stand.
 function checkHand() {
+    var handTotal = 0;
+    var aceCount = 0;
+    for (let i = 0; i < playerHand.length; i++) {
+        if (playerHand[i] >= 10) {
+            handTotal += 10;
+        }
+        else if (playerHand[i] == 1){
+            handTotal += 11;
+            aceCount++;
+        }
+        else {
+            handTotal += playerHand[i];
+        }
+    }
 
+    while (handTotal > 21 && aceCount > 0) {
+        handTotal -= 10;
+        aceCount--;
+    }
+
+    if(handTotal > 21)
+        endGame();
+    else if(handTotal = 21)
+        stand();
 }
 
 //end the game and open the modal
@@ -46,5 +69,3 @@ document.addEventListener('DOMContentLoaded', function() {
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
 });
-
-
