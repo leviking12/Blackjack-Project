@@ -16,3 +16,46 @@ body {
     font-size: 16px;
     cursor: pointer;
 }
+
+.modal1 {
+    position: fixed;
+    bottom: 20px; 
+    left: 50%; 
+    padding: 10px 20px;
+}
+#playAgain {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+#playAgain h2 {
+    text-align: center;
+    padding-top: 90px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 0;
+}
+
+.playing-card {
+    width: 120px;
+    height: 160px;
+    border:solid 1px black;
+    background:white;
+    margin:5px;
+    padding:10px;
+    text-align: center;
+}
+
+.cards {
+    display:flex;
+}
+

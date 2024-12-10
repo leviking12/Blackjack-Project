@@ -14,9 +14,44 @@
             <h1 id="game-title">Lets Play Blackjack!</h1>
             <button id="start-button">Start Game</button>
         </div>
-        <section id="game-page"></section>
+        <section id="game-page">
+            <div class="container row valign-wrapper">
+                <div class="col s6">
+                    <section id="dealer-hand" class="section">
+                        <h3>Dealer</h3>
+                        <div class="cards">
+                            <div class="playing-card">7</div>
+                            <div class="playing-card">5</div>
+                        </div>
+                    </section>
+                    <div class="divider"></div>
+                    <section id="player-hand" class="section">
+                        <h3>Player</h3>
+                        <div class="cards">
+                            <div class="playing-card">1</div>
+                            <div class="playing-card">10</div>
+                            <div class="playing-card">2</div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row col s6">
+                    <a href="#!" class="col s3 offset-s3 modal-close waves-effect waves-light btn green">Hit</a>
+                    <a href="#!" class="col s3 offset-s3 modal-close waves-effect waves-light btn green">Stand</a>
+                </div>
+              </div>
+        </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <section class="modal1">
+        <a class="waves-effect waves-light btn modal-trigger" href="#playAgain">Open Modal</a>
+        <div id="playAgain" class="modal">
+            <h2>Play Again?</h2>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-light btn green">Continue</a>
+                <a href="#!" class="modal-close waves-effect waves-light btn red">Exit</a>
+            </div>
+        </div>
+    </section>
     <script src="./assets/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
