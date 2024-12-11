@@ -1,8 +1,10 @@
 //player hand that will recieve values from 1-13
 var playerHand = [];
+var playerHandTotal = 0;
 
 //dealer hand that will recieve values from 1-13
 var dealerHand = [];
+var dealerHandTotal = 0;
 
 //all of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
@@ -21,7 +23,48 @@ function draw() {
 
 //Give the dealer cards until they are greater than or equal to 17
 function stand() {
+    var aceCount = 0;
 
+    //count the first 2 cards of the dealer's hand
+    for (let i = 0; i < dealerHand.length; i++) {
+        if (dealerHand[i] >= 10) {
+            dealerHandTotal += 10;
+        }
+        else if (dealerHand[i] === 1){
+            dealerHandTotal += 11;
+            aceCount++;
+        }
+        else {
+            dealerHandTotal += dealerHand[i];
+        }
+    }
+
+    //if the total is less than 17, then the dealer will draw cards just like the player
+    while(dealerHandTotal < 17) {
+        var randomCard = cards[Math.floor(Math.random() * cards.length)]
+        dealerHand.push(randomCard);
+        if (randomCard >= 10) {
+            dealerHandTotal += 10;
+        }
+        else if(randomCard === 1){
+            dealerHandTotal += 11;
+            aceCount++;
+        } else {
+            dealerHandTotal += randomCard;
+        }
+
+        //if the dealer got a 21, then break the loop. 
+        if(dealerHandTotal === 21)
+            break;
+
+        //the dealer can convert their aces to 1s if they're over 17
+        while (dealerHandTotal > 17 && aceCount > 0) {
+            dealerHandTotal -= 10;
+            aceCount--;
+        }
+    }
+
+    //end the game when the dealer is over 17 or reaches 21
     endGame();
 }
 
@@ -29,33 +72,37 @@ function stand() {
 //If Player is under 21, continue.
 //if Player is 21, stand.
 function checkHand() {
-    var handTotal = 0;
     var aceCount = 0;
+
+    //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i] >= 10) {
-            handTotal += 10;
+            playerHandTotal += 10;
         }
-        else if (playerHand[i] == 1){
-            handTotal += 11;
+        else if (playerHand[i] === 1){
+            playerHandTotal += 11;
             aceCount++;
         }
         else {
-            handTotal += playerHand[i];
+            playerHandTotal += playerHand[i];
         }
     }
 
-    while (handTotal > 21 && aceCount > 0) {
-        handTotal -= 10;
+    //if the player is over 21 and they have aces available, convert them from 11s to 1s
+    while (playerHandTotal > 21 && aceCount > 0) {
+        playerHandTotal -= 10;
         aceCount--;
     }
 
-    if(handTotal > 21)
+    if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
-    else if(handTotal = 21)
+    else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
         stand();
 }
 
 //end the game and open the modal
+//display the totals of the two players and their hands
+//if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
 
 }
