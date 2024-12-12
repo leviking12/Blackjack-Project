@@ -17,6 +17,13 @@ body {
     cursor: pointer;
 }
 
+#game-page {
+    display: none;
+}
+.modal1 a {
+    display: none;
+}
+
 .modal1 {
     position: fixed;
     bottom: 20px; 
