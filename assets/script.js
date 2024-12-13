@@ -1,17 +1,3 @@
-// Start page functionality
-document.getElementById('start-button').addEventListener('click', function() {
-    
-    // Hide start page elements
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-        
-    // Show the game page upon clicking start button
-    document.getElementById('game-page').style.display = 'block';
-        
-    // Start the game
-    startGame();
-    });
-
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
@@ -122,10 +108,17 @@ function endGame() {
 }
 
 document.getElementById('start-button').addEventListener('click', function() {
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-    alert('Game Started!');
+    
+    // Hide start page elements
+    document.getElementById('start-page').style.display = 'none';
+        
+    // Show the game page upon clicking start button
+    document.getElementById('game-page').style.display = 'flex';
+        
+    // Start the game
+    startGame();
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
