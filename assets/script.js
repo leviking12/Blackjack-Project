@@ -31,7 +31,8 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    playerHand.push(randomIndex)
     checkHand();
 }
 
