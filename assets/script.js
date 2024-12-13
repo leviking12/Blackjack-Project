@@ -13,7 +13,9 @@ document.getElementById('start-button').addEventListener('click', function() {
     });
 
 const playAgain = document.getElementById("playAgain")
-const modalOpen = M.Modal.init(playAgain) 
+const instance = M.Modal.init(playAgain,  {dismissable: false}) 
+
+
 
 // Player hand that will recieve values from 1-13
 var playerHand = [];
@@ -134,38 +136,35 @@ function endGame() {
     dealerHand = [];
     playerHand = [];
 
-    modalOpen.open()
+    instance.open()
     
 }
-endGame()
+
+
 
 document.getElementById('start-button').addEventListener('click', function() {
     document.getElementById('game-title').style.display = 'none';
     this.style.display = 'none';
     alert('Game Started!');
 });
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
 
-});
+}); */
 
-function modal2() {
-    var modals = document.querySelectorAll(".modal")
-    var instances = M.Modal.init(modals)
-}
+endGame()
 
 document.getElementById("continue").addEventListener("click", function () {
-    // startGame();
-    // const playAgain = document.getElementById("playAgain");
-    // const modalOpen = M.Modal.getInstance(playAgain);
-    if (modalOpen) {
-        modalOpen.close();
+    startGame();
+    if (instance) {
+        instance.close();
     } else {
         console.log("cant get modal instance")
     }
     
-})
-// modalOpen.open()
-// console.log(modalOpen.isOpen);
-modal2()
+}) 
+// instance.open()
+
+console.log(instance.isOpen);
+
