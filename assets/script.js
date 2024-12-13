@@ -38,8 +38,7 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-    const randomIndex = Math.floor(Math.random() * cards.length);
-    playerHand.push(randomIndex)
+
     checkHand();
 }
 
@@ -135,6 +134,8 @@ function endGame() {
         dealerScore++
     } 
     dealerHand = [];
+    dealerHandTotal = 0;
+    playerHandTotal = 0;
     playerHand = [];
 
     instance.open()
@@ -148,24 +149,15 @@ document.getElementById('start-button').addEventListener('click', function() {
     this.style.display = 'none';
     alert('Game Started!');
 });
-/* document.addEventListener('DOMContentLoaded', function() {
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
 
-}); */
 
-endGame()
 
 document.getElementById("continue").addEventListener("click", function () {
     startGame();
-    if (instance) {
-        instance.close();
-    } else {
-        console.log("cant get modal instance")
-    }
+    instance.close();
     
 }) 
-// instance.open()
 
-console.log(instance.isOpen);
+
+
 
