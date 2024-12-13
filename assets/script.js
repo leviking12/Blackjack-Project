@@ -17,8 +17,7 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-    const randomIndex = Math.floor(Math.random() * cards.length);
-    playerHand.push(randomIndex)
+
     checkHand();
 }
 
@@ -94,7 +93,7 @@ function checkHand() {
         playerHandTotal -= 10;
         aceCount--;
     }
-
+    
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
@@ -105,7 +104,7 @@ function checkHand() {
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-
+    instance.open();
 }
 
 document.getElementById('start-button').addEventListener('click', function() {
@@ -120,7 +119,5 @@ document.getElementById('start-button').addEventListener('click', function() {
     startGame();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
-});
+
+
