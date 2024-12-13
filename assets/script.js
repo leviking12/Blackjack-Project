@@ -12,13 +12,20 @@ document.getElementById('start-button').addEventListener('click', function() {
     startGame();
     });
 
+const playAgain = document.getElementById("playAgain")
+const instance = M.Modal.init(playAgain,  {dismissable: false}) 
+
+
+
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
+var plaerScore = 0;
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
 var dealerHandTotal = 0;
+var dealerScore = 0;
 
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
@@ -31,6 +38,7 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
+
     const randomIndex = Math.floor(Math.random() * cards.length);
     playerHand.push(randomIndex)
     checkHand();
@@ -82,6 +90,8 @@ function stand() {
     //end the game when the dealer is over 17 or reaches 21
     endGame();
 }
+    
+
 
 // If Player is over 21, then end game.
 // If Player is under 21, continue.
@@ -120,14 +130,36 @@ function checkHand() {
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
 
+    if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
+        playerScore++
+    } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
+        dealerScore++
+    } 
+    dealerHand = [];
+    dealerHandTotal = 0;
+    playerHandTotal = 0;
+    playerHand = [];
+
+    instance.open()
+    
 }
+
+
 
 document.getElementById('start-button').addEventListener('click', function() {
     document.getElementById('game-title').style.display = 'none';
     this.style.display = 'none';
     alert('Game Started!');
 });
-document.addEventListener('DOMContentLoaded', function() {
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
-});
+
+
+
+document.getElementById("continue").addEventListener("click", function () {
+    startGame();
+    instance.close();
+    
+}) 
+
+
+
+
