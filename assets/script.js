@@ -14,26 +14,43 @@ document.getElementById('start-button').addEventListener('click', function() {
 
 const playAgain = document.getElementById("playAgain")
 const instance = M.Modal.init(playAgain,  {dismissable: false}) 
-
-
+const playerScoreElem = document.getElementById("player-score-elem")
+const dealerScoreElem = document.getElementById("dealer-score-elem")
+const playerWinsElem = document.getElementById("player-wins-elem")
+const dealerWinsElem = document.getElementById("dealer-wins-elem")
 
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
-var plaerScore = 0;
+var playerScore = 0;
+localStorage.setItem("playerScore", JSON.stringify(playerScore))
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
 var dealerHandTotal = 0;
 var dealerScore = 0;
-
+localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+
+function loadScores() {
+    localStorage.getItem("playerScore", JSON.parse(playerScore))
+    localStorage.getItem("dealerScore", JSON.parse(dealerScore))
+
+    playerWinsElem.textContent = `Player Wins: ${playerScore}`
+    dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+    
+
+}
+
+loadScores()
+
 
 // Gives the player and dealer 2 cards
 function startGame() {
 
     checkHand();
+    currentScore()
 }
 
 // Gives the player 1 card
@@ -42,6 +59,7 @@ function draw() {
     const randomIndex = Math.floor(Math.random() * cards.length);
     playerHand.push(randomIndex)
     checkHand();
+    currentScore()
 }
 
 // Give the dealer cards until they are greater than or equal to 17
@@ -88,6 +106,7 @@ function stand() {
     }
 
     //end the game when the dealer is over 17 or reaches 21
+    currentScore()
     endGame();
 }
     
@@ -125,16 +144,26 @@ function checkHand() {
         stand();
 }
 
+
+function currentScore() {
+    playerScoreElem.textContent = playerHandTotal
+    dealerScoreElem.textContent = dealerHandTotal
+}
+
 // End the game and open the modal
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-
     if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
         playerScore++
     } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
         dealerScore++
     } 
+
+    loadScores()
+    localStorage.setItem("playerScore", JSON.stringify(playerScore))
+    localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
+    
     dealerHand = [];
     dealerHandTotal = 0;
     playerHandTotal = 0;
@@ -143,6 +172,11 @@ function endGame() {
     instance.open()
     
 }
+instance.open()
+console.log(localStorage)
+
+
+
 
 
 
