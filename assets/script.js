@@ -1,29 +1,20 @@
-// Start page functionality
-document.getElementById('start-button').addEventListener('click', function() {
-    
-    // Hide start page elements
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-        
-    // Show the game page upon clicking start button
-    document.getElementById('game-page').style.display = 'block';
-        
-    // Start the game
-    startGame();
-    });
-
 const playAgain = document.getElementById("playAgain")
 const instance = M.Modal.init(playAgain,  {dismissable: false}) 
+
 const playerScoreElem = document.getElementById("player-score-elem")
 const dealerScoreElem = document.getElementById("dealer-score-elem")
 const playerWinsElem = document.getElementById("player-wins-elem")
 const dealerWinsElem = document.getElementById("dealer-wins-elem")
 
+
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
 var playerScore = 0;
+
 localStorage.setItem("playerScore", JSON.stringify(playerScore))
+
+
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
@@ -52,9 +43,8 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-
-    const randomIndex = Math.floor(Math.random() * cards.length);
-    playerHand.push(randomIndex)
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    playerHand.push(randomCard);
     checkHand();
 }
 
@@ -113,8 +103,7 @@ function stand() {
 // If Player is 21, stand.
 function checkHand() {
     var aceCount = 0;
-    
-
+    playerHandTotal = 0;
     //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i] >= 10) {
@@ -134,7 +123,9 @@ function checkHand() {
         playerHandTotal -= 10;
         aceCount--;
     }
+
     currentScore()
+
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
@@ -167,17 +158,20 @@ function endGame() {
     playerHand = [];
 
     instance.open()
-    
 }
 
 
 document.getElementById('start-button').addEventListener('click', function() {
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-    alert('Game Started!');
+    
+    // Hide start page elements
+    document.getElementById('start-page').style.display = 'none';
+        
+    // Show the game page upon clicking start button
+    document.getElementById('game-page').style.display = 'flex';
+        
+    // Start the game
+    startGame();
 });
-
-
 
 document.getElementById("continue").addEventListener("click", function () {
     startGame();
@@ -185,6 +179,10 @@ document.getElementById("continue").addEventListener("click", function () {
     
 }) 
 
+document.getElementById("draw-button").addEventListener("click", function () {
+    draw();
+}) 
 
-
-
+document.getElementById("stand-button").addEventListener("click", function () {
+    stand();
+}) 

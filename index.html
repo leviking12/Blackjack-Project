@@ -10,33 +10,30 @@
 <body>
     <header></header>
     <main>
-        <div class="start-page">
-            <h1 id="game-title">Lets Play Blackjack!</h1>
-            <button id="start-button">Start Game</button>
-        </div>
+        <section id="start-page">
+            <div class="container valign-wrapper">
+                <h1 id="game-title">Lets Play Blackjack!</h1>
+                <button id="start-button" class="waves-effect waves-light btn green">Start Game</button>
+            </div>
+        </section>
         <section id="game-page">
             <div class="container row valign-wrapper">
                 <div class="col s6">
                     <section id="dealer-hand" class="section">
                         <h3>Dealer</h3>
                         <div class="cards">
-                            <div class="playing-card">7</div>
-                            <div class="playing-card">5</div>
                         </div>
                     </section>
                     <div class="divider"></div>
                     <section id="player-hand" class="section">
                         <h3>Player</h3>
                         <div class="cards">
-                            <div class="playing-card">1</div>
-                            <div class="playing-card">10</div>
-                            <div class="playing-card">2</div>
                         </div>
                     </section>
                 </div>
                 <div class="row col s6">
-                    <a href="#!" class="col s3 offset-s3 waves-effect waves-light btn green">Hit</a>
-                    <a href="#!" class="col s3 offset-s3 waves-effect waves-light btn green">Stand</a>
+                    <button class="col s3 offset-s3 waves-effect waves-light btn green" id="draw-button">Hit</button>
+                    <button class="col s3 offset-s3 waves-effect waves-light btn green" id="stand-button">Stand</button>
                 </div>
             </div>
             <div id="current-score">
@@ -62,8 +59,7 @@
             <span id="player-score"></span>
             <span id="dealer-score"></span>
             <div class="modal-footer">
-                <a href="#!" id="continue" class="modal-close waves-effect waves-light btn green">Continue</a>
-                <a href="#!" id="exit" class="modal-close waves-effect waves-light btn red">Exit</a>
+                <button id="continue" class="modal-close waves-effect waves-light btn green">Continue</button>
             </div>
         </div>
     </section>

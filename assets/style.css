@@ -1,28 +1,22 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
 }
 
-.start-page {
-    text-align: center;
+#start-page div {
+    display: flex;
+    height:100vh;
+    flex-direction:column;
+    justify-content: center;
 }
 
-#start-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+#game-page {
+    height:100vh;
 }
 
 #game-page {
     display: none;
 }
-
-
-
 
 .modal1 {
     position: fixed;
@@ -30,8 +24,8 @@ body {
     left: 50%; 
     padding: 10px 20px;
 }
+
 #playAgain {
-    display: flex;
     flex-direction: column;
     height: 350px;
     width: 400px;
