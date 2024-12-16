@@ -1,26 +1,10 @@
-// Start page functionality
-document.getElementById('start-button').addEventListener('click', function() {
-    
-    // Hide start page elements
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-        
-    // Show the game page upon clicking start button
-    document.getElementById('game-page').style.display = 'block';
-        
-    // Start the game
-    startGame();
-    });
-
 const playAgain = document.getElementById("playAgain")
 const instance = M.Modal.init(playAgain,  {dismissable: false}) 
-
-
 
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
-var plaerScore = 0;
+var playerScore = 0;
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
@@ -38,9 +22,8 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-
-    const randomIndex = Math.floor(Math.random() * cards.length);
-    playerHand.push(randomIndex)
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    playerHand.push(randomCard);
     checkHand();
 }
 
@@ -98,6 +81,7 @@ function stand() {
 // If Player is 21, stand.
 function checkHand() {
     var aceCount = 0;
+    playerHandTotal = 0;
 
     //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
@@ -118,7 +102,7 @@ function checkHand() {
         playerHandTotal -= 10;
         aceCount--;
     }
-
+    
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
@@ -129,7 +113,6 @@ function checkHand() {
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-
     if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
         playerScore++
     } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
@@ -141,18 +124,21 @@ function endGame() {
     playerHand = [];
 
     instance.open()
-    
 }
 
 
 
 document.getElementById('start-button').addEventListener('click', function() {
-    document.getElementById('game-title').style.display = 'none';
-    this.style.display = 'none';
-    alert('Game Started!');
+    
+    // Hide start page elements
+    document.getElementById('start-page').style.display = 'none';
+        
+    // Show the game page upon clicking start button
+    document.getElementById('game-page').style.display = 'flex';
+        
+    // Start the game
+    startGame();
 });
-
-
 
 document.getElementById("continue").addEventListener("click", function () {
     startGame();
@@ -160,6 +146,10 @@ document.getElementById("continue").addEventListener("click", function () {
     
 }) 
 
+document.getElementById("draw-button").addEventListener("click", function () {
+    draw();
+}) 
 
-
-
+document.getElementById("stand-button").addEventListener("click", function () {
+    stand();
+}) 
