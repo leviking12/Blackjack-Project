@@ -1,10 +1,15 @@
+const playAgain = document.getElementById("playAgain")
+const instance = M.Modal.init(playAgain,  {dismissable: false}) 
+
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
+var playerScore = 0;
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
 var dealerHandTotal = 0;
+var dealerScore = 0;
 
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
@@ -17,7 +22,8 @@ function startGame() {
 
 // Gives the player 1 card
 function draw() {
-
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    playerHand.push(randomCard);
     checkHand();
 }
 
@@ -67,12 +73,15 @@ function stand() {
     //end the game when the dealer is over 17 or reaches 21
     endGame();
 }
+    
+
 
 // If Player is over 21, then end game.
 // If Player is under 21, continue.
 // If Player is 21, stand.
 function checkHand() {
     var aceCount = 0;
+    playerHandTotal = 0;
 
     //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
@@ -104,8 +113,20 @@ function checkHand() {
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-    instance.open();
+    if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
+        playerScore++
+    } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
+        dealerScore++
+    } 
+    dealerHand = [];
+    dealerHandTotal = 0;
+    playerHandTotal = 0;
+    playerHand = [];
+
+    instance.open()
 }
+
+
 
 document.getElementById('start-button').addEventListener('click', function() {
     
@@ -119,5 +140,16 @@ document.getElementById('start-button').addEventListener('click', function() {
     startGame();
 });
 
+document.getElementById("continue").addEventListener("click", function () {
+    startGame();
+    instance.close();
+    
+}) 
 
+document.getElementById("draw-button").addEventListener("click", function () {
+    draw();
+}) 
 
+document.getElementById("stand-button").addEventListener("click", function () {
+    stand();
+}) 
