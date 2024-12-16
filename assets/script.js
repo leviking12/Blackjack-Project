@@ -42,15 +42,12 @@ function loadScores() {
     
 
 }
-
-loadScores()
-
-
+loadScores();
 // Gives the player and dealer 2 cards
 function startGame() {
 
     checkHand();
-    currentScore()
+    
 }
 
 // Gives the player 1 card
@@ -59,7 +56,6 @@ function draw() {
     const randomIndex = Math.floor(Math.random() * cards.length);
     playerHand.push(randomIndex)
     checkHand();
-    currentScore()
 }
 
 // Give the dealer cards until they are greater than or equal to 17
@@ -117,6 +113,7 @@ function stand() {
 // If Player is 21, stand.
 function checkHand() {
     var aceCount = 0;
+    
 
     //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
@@ -137,7 +134,7 @@ function checkHand() {
         playerHandTotal -= 10;
         aceCount--;
     }
-
+    currentScore()
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
@@ -172,12 +169,6 @@ function endGame() {
     instance.open()
     
 }
-instance.open()
-console.log(localStorage)
-
-
-
-
 
 
 document.getElementById('start-button').addEventListener('click', function() {

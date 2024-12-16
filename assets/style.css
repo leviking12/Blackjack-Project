@@ -70,6 +70,7 @@ body {
 #current-score {
     border: 2px solid black;
     border-radius: 15px;
+    box-shadow: 7px 13px 5px #4a4a4a;
     position: fixed;
     max-width: 600px;
     height: 175px;
@@ -91,6 +92,7 @@ body {
 
 #score-board {
     border: 2px solid black;
+    box-shadow: 7px 13px 5px #4a4a4a;
     border-radius: 15px;
     position: fixed;
     width: auto;
