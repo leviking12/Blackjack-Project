@@ -7,6 +7,22 @@ const playerWinsElem = document.getElementById("player-wins-elem")
 const dealerWinsElem = document.getElementById("dealer-wins-elem")
 const modalHeader = document.getElementById("modal-header")
 
+
+// Rules and Button display
+const rulesButton = document.getElementById(button);
+const rulesContainer = document.getElementById(container);
+
+// Button functionality
+button.addEventListener('click', () => {
+    if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block';
+        button.textContent = 'Hide Blackjack Rules';
+    } else {
+        container.style.display = 'none';
+        button.textContent = 'Show Blackjack Rules';
+    }
+});
+
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
