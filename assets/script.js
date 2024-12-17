@@ -27,15 +27,23 @@ function loadScores() {
     playerScore = JSON.parse(localStorage.getItem("playerScore"))
     dealerScore = JSON.parse(localStorage.getItem("dealerScore"))
     
-    if (!playerScore || !dealerScore){
-        playerWinsElem.textContent = `Player Wins: 0`
-        dealerWinsElem.textContent = `Dealer Wins: 0`
+    if (playerScore == null){
+        playerWinsElem.textContent = "Player Wins: 0"   
     } else {
-    playerWinsElem.textContent = `Player Wins: ${playerScore}`
-    dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+        playerWinsElem.textContent = `Player Wins: ${playerScore}`
+    }
+    if (!dealerScore) { 
+        dealerWinsElem.textContent = "Dealer Wins: 0"
+    } else {
+        dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+    }
+    
 }
 
+<<<<<<< HEAD
+=======
 }
+>>>>>>> b35cf6787279a767304528384193f7b522ed8885
 
 loadScores();
 
@@ -218,6 +226,9 @@ function endGame() {
         dealerScore++
         modalHeader.textContent = "Dealer Wins"
         modalHeader.style.color = "red"
+    } else {
+        modalHeader.textContent = "Tie"
+        modalHeader.style.color = "yellow"
     }
     
     
