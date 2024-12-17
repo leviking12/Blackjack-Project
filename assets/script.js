@@ -1,10 +1,19 @@
 const playAgain = document.getElementById("playAgain")
 const instance = M.Modal.init(playAgain,  {dismissable: false}) 
 
+const playerScoreElem = document.getElementById("player-score-elem")
+const dealerScoreElem = document.getElementById("dealer-score-elem")
+const playerWinsElem = document.getElementById("player-wins-elem")
+const dealerWinsElem = document.getElementById("dealer-wins-elem")
+const modalHeader = document.getElementById("modal-header")
+
 // Player hand that will recieve values from 1-13
 var playerHand = [];
 var playerHandTotal = 0;
 var playerScore = 0;
+
+
+
 
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
@@ -14,10 +23,37 @@ var dealerScore = 0;
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
-// Gives the player and dealer 2 cards
+function loadScores() {
+    playerScore = JSON.parse(localStorage.getItem("playerScore"))
+    dealerScore = JSON.parse(localStorage.getItem("dealerScore"))
+    
+    if (!playerScore || !dealerScore){
+        playerWinsElem.textContent = `Player Wins: 0`
+        dealerWinsElem.textContent = `Dealer Wins: 0`
+    } else {
+    playerWinsElem.textContent = `Player Wins: ${playerScore}`
+    dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+}
+
+}
+
+loadScores();
+
+// Start Game
 function startGame() {
+    playerHand = [];
+    dealerHand = [];
+    playerHandTotal = 0;
+    dealerHandTotal = 0;
+
+    // Give 2 cards to player and dealer
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
 
     checkHand();
+    
 }
 
 // Gives the player 1 card
@@ -73,6 +109,7 @@ function stand() {
     updateCards()
 
     //end the game when the dealer is over 17 or reaches 21
+    currentScore()
     endGame();
 }
     
@@ -125,7 +162,6 @@ function updateCards(){
 function checkHand() {
     var aceCount = 0;
     playerHandTotal = 0;
-
     //count all the cards in the player's hand
     for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i] >= 10) {
@@ -147,22 +183,48 @@ function checkHand() {
     }
 
     updateCards()
-    
+    currentScore()
+  
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
         stand();
 }
 
+
+function currentScore() {
+    playerScoreElem.textContent = playerHandTotal
+    dealerScoreElem.textContent = dealerHandTotal
+}
+
 // End the game and open the modal
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-    if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
-        playerScore++
-    } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
+
+    if (playerHandTotal > 21) {
         dealerScore++
-    } 
+        modalHeader.textContent = "Dealer Wins"
+        modalHeader.style.color = "red"
+    } else if (dealerHandTotal > 21) {
+        playerScore++
+        modalHeader.textContent = "You Win!"
+        modalHeader.style.color = "green"
+    } else if (playerHandTotal > dealerHandTotal){
+        playerScore++
+        modalHeader.textContent = "You Win!"
+        modalHeader.style.color = "green"
+    } else if (dealerHandTotal > playerHandTotal) {
+        dealerScore++
+        modalHeader.textContent = "Dealer Wins"
+        modalHeader.style.color = "red"
+    }
+    
+    
+    localStorage.setItem("playerScore", JSON.stringify(playerScore))
+    localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
+    loadScores();
+    
     dealerHand = [];
     dealerHandTotal = 0;
     playerHandTotal = 0;
@@ -170,7 +232,6 @@ function endGame() {
 
     instance.open()
 }
-
 
 
 document.getElementById('start-button').addEventListener('click', function() {
