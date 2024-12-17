@@ -37,7 +37,14 @@ body {
 
 #playAgain h2 {
     text-align: center;
-    padding-top: 90px;
+    padding-top: 20px;
+    
+}
+
+#playAgain h3 {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 40px;
 }
 
 .modal-footer {
@@ -62,23 +69,21 @@ body {
 }
 
 #current-score {
-    border: 2px solid black;
-    border-radius: 15px;
-    box-shadow: 7px 13px 5px #4a4a4a;
     position: fixed;
     max-width: 600px;
     height: 175px;
-    
+    top: 525px;
+    left: 900px;
 }
 
 #current-score ul {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    gap: 25px;
+    gap: 75px;
     justify-items: center;
     padding: 0 50px 0 50px;
-    font-size: 24px;
+    font-size: 38px;
     font-weight: bold;
     text-align: center;
     

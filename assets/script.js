@@ -5,7 +5,7 @@ const playerScoreElem = document.getElementById("player-score-elem")
 const dealerScoreElem = document.getElementById("dealer-score-elem")
 const playerWinsElem = document.getElementById("player-wins-elem")
 const dealerWinsElem = document.getElementById("dealer-wins-elem")
-
+const modalHeader = document.getElementById("modal-header")
 
 // Player hand that will recieve values from 1-13
 var playerHand = [];
@@ -27,10 +27,13 @@ function loadScores() {
     playerScore = JSON.parse(localStorage.getItem("playerScore"))
     dealerScore = JSON.parse(localStorage.getItem("dealerScore"))
     
-
+    if (!playerScore || !dealerScore){
+        playerWinsElem.textContent = `Player Wins: 0`
+        dealerWinsElem.textContent = `Dealer Wins: 0`
+    } else {
     playerWinsElem.textContent = `Player Wins: ${playerScore}`
     dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
-    
+}
 
 }
 loadScores();
@@ -145,12 +148,20 @@ function endGame() {
 
     if (playerHandTotal > 21) {
         dealerScore++
+        modalHeader.textContent = "Dealer Wins"
+        modalHeader.style.color = "red"
     } else if (dealerHandTotal > 21) {
         playerScore++
+        modalHeader.textContent = "You Win!"
+        modalHeader.style.color = "green"
     } else if (playerHandTotal > dealerHandTotal){
         playerScore++
+        modalHeader.textContent = "You Win!"
+        modalHeader.style.color = "green"
     } else if (dealerHandTotal > playerHandTotal) {
         dealerScore++
+        modalHeader.textContent = "Dealer Wins"
+        modalHeader.style.color = "red"
     }
     
     
@@ -165,8 +176,7 @@ function endGame() {
 
     instance.open()
 }
-console.log(localStorage)
-localStorage.clear()
+
 
 document.getElementById('start-button').addEventListener('click', function() {
     
