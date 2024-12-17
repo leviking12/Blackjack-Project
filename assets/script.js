@@ -147,8 +147,10 @@ function updateCards(){
 
     for(let i = 0; i < dealerHand.length; i++){
         const card = document.createElement("div");
-        if(i==0 && isHidden)
+        if(i==0 && isHidden) {
             card.textContent = ""
+            card.classList.add("card-hidden")
+        }
         else if(dealerHand[i] == 1)
             card.textContent = 'A';
         else if(dealerHand[i] == 11)
@@ -159,7 +161,7 @@ function updateCards(){
             card.textContent = 'K';
         else
             card.textContent = dealerHand[i];
-        card.classList = "playing-card";
+        card.classList.add("playing-card");
         dealer.children[1].appendChild(card);
     }
 
@@ -213,7 +215,7 @@ function endGame() {
 
     if (playerHandTotal > 21) {
         dealerScore++
-        modalHeader.textContent = "Dealer Wins"
+        modalHeader.textContent = "Dealer Wins!"
         modalHeader.style.color = "red"
     } else if (dealerHandTotal > 21) {
         playerScore++
@@ -225,13 +227,15 @@ function endGame() {
         modalHeader.style.color = "green"
     } else if (dealerHandTotal > playerHandTotal) {
         dealerScore++
-        modalHeader.textContent = "Dealer Wins"
+        modalHeader.textContent = "Dealer Wins!"
         modalHeader.style.color = "red"
     } else {
-        modalHeader.textContent = "Tie"
+        modalHeader.textContent = "Tie!"
         modalHeader.style.color = "yellow"
     }
-    
+
+    document.getElementById("player-score").textContent = playerHandTotal;
+    document.getElementById("dealer-score").textContent = dealerHandTotal;
     
     localStorage.setItem("playerScore", JSON.stringify(playerScore))
     localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
