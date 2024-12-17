@@ -14,8 +14,18 @@ var dealerScore = 0;
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
-// Gives the player and dealer 2 cards
+// Start Game
 function startGame() {
+    playerHand = [];
+    dealerHand = [];
+    playerHandTotal = 0;
+    dealerHandTotal = 0;
+
+    // Give 2 cards to player and dealer
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
 
     checkHand();
 }
