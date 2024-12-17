@@ -27,15 +27,20 @@ function loadScores() {
     playerScore = JSON.parse(localStorage.getItem("playerScore"))
     dealerScore = JSON.parse(localStorage.getItem("dealerScore"))
     
-    if (!playerScore || !dealerScore){
-        playerWinsElem.textContent = `Player Wins: 0`
-        dealerWinsElem.textContent = `Dealer Wins: 0`
+    if (playerScore == null){
+        playerWinsElem.textContent = "Player Wins: 0"   
     } else {
-    playerWinsElem.textContent = `Player Wins: ${playerScore}`
-    dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+        playerWinsElem.textContent = `Player Wins: ${playerScore}`
+    }
+    if (!dealerScore) { 
+        dealerWinsElem.textContent = "Dealer Wins: 0"
+    } else {
+        dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
+    }
+    
 }
 
-}
+
 loadScores();
 // Gives the player and dealer 2 cards
 function startGame() {
@@ -162,6 +167,9 @@ function endGame() {
         dealerScore++
         modalHeader.textContent = "Dealer Wins"
         modalHeader.style.color = "red"
+    } else {
+        modalHeader.textContent = "Tie"
+        modalHeader.style.color = "yellow"
     }
     
     
