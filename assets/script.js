@@ -54,7 +54,10 @@ function startGame() {
     dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
     var firstCard = cards[Math.floor(Math.random() * cards.length)];
     dealerHand.push(firstCard);
-    dealerHandTotal = firstCard;
+    if(firstCard > 10)
+        dealerHandTotal = 10;
+    else
+        dealerHandTotal = firstCard;
 
     checkHand();
     
