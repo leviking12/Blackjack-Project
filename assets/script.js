@@ -40,10 +40,25 @@ function loadScores() {
     
 }
 
+<<<<<<< HEAD
+=======
+}
+>>>>>>> b35cf6787279a767304528384193f7b522ed8885
 
 loadScores();
-// Gives the player and dealer 2 cards
+
+// Start Game
 function startGame() {
+    playerHand = [];
+    dealerHand = [];
+    playerHandTotal = 0;
+    dealerHandTotal = 0;
+
+    // Give 2 cards to player and dealer
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
 
     checkHand();
     
@@ -99,12 +114,55 @@ function stand() {
         }
     }
 
+    updateCards()
+
     //end the game when the dealer is over 17 or reaches 21
     currentScore()
     endGame();
 }
     
+function updateCards(){
+    const player = document.getElementById('player-hand')
+    player.children[1].innerHTML = ''
 
+     const dealer = document.getElementById('dealer-hand')
+    dealer.children[1].innerHTML = ''
+
+    for(let i = 0; i < playerHand.length; i++){
+        const card = document.createElement("div");
+        if(playerHand[i] == 1)
+            card.textContent = 'A';
+        else if(playerHand[i] == 11)
+            card.textContent = 'J';
+        else if(playerHand[i] == 12)
+            card.textContent = 'Q';
+        else if(playerHand[i] == 13)
+            card.textContent = 'K';
+        else
+            card.textContent = playerHand[i];
+        card.classList = "playing-card";
+        player.children[1].appendChild(card);
+    }
+
+    for(let i = 0; i < dealerHand.length; i++){
+        const card = document.createElement("div");
+        if(i==0)
+            card.textContent = ""
+        else if(dealerHand[i] == 1)
+            card.textContent = 'A';
+        else if(dealerHand[i] == 11)
+            card.textContent = 'J';
+        else if(dealerHand[i] == 12)
+            card.textContent = 'Q';
+        else if(dealerHand[i] == 13)
+            card.textContent = 'K';
+        else
+            card.textContent = dealerHand[i];
+        card.classList = "playing-card";
+        dealer.children[1].appendChild(card);
+    }
+
+}
 
 // If Player is over 21, then end game.
 // If Player is under 21, continue.
@@ -132,8 +190,9 @@ function checkHand() {
         aceCount--;
     }
 
+    updateCards()
     currentScore()
-
+  
     if(playerHandTotal > 21) //if the player is over 21, then end the game
         endGame();
     else if(playerHandTotal === 21) //if the player has 21, then they will automatically stand
