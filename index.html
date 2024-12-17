@@ -18,35 +18,31 @@
         </section>
         <section id="game-page">
             <div class="container row valign-wrapper">
-                <div class="col s6">
+                <div class="col s12 m12 l6">
                     <section id="dealer-hand" class="section">
-                        <h3>Dealer</h3>
+                        <h3>Dealer: <span id="dealer-score-elem"></span></h3>
                         <div class="cards">
                         </div>
                     </section>
                     <div class="divider"></div>
                     <section id="player-hand" class="section">
-                        <h3>Player</h3>
+                        <h3>Player: <span id="player-score-elem"></span></h3>
                         <div class="cards">
                         </div>
                     </section>
                 </div>
-                <div class="row col s6">
-                    <button class="col s3 offset-s3 waves-effect waves-light btn green" id="draw-button">Hit</button>
-                    <button class="col s3 offset-s3 waves-effect waves-light btn green" id="stand-button">Stand</button>
+                <div class="col s12 m12 l6">
+                    <div id="score-board" class="row card-panel grey lighten-5">
+                        <h4 id="player-wins-elem">Player Wins:</h4>
+                        <div class="divider"></div>
+                        <h4 id="dealer-wins-elem">Dealer Wins:</h4>
+                    </div>
+                    <div class="row">
+                        <button class="col s5 btn green" id="draw-button">Hit</button>
+                        <div class="col s2"></div>
+                        <button class="col s5 btn green" id="stand-button">Stand</button>
+                    </div>
                 </div>
-            </div>
-            <div id="current-score">
-                <ul>
-                    <li id="dealer-score-elem"></li>
-                    <li id="player-score-elem"></li>
-                </ul>
-            </div>
-            <div id="score-board">
-                <ul>
-                    <li id="player-wins-elem">Player Wins:</li>
-                    <li id="dealer-wins-elem">Dealer Wins:</li>
-                </ul>
             </div>
         </section>
     </main>
@@ -54,11 +50,13 @@
     <section class="modal1">
         <div id="playAgain" class="modal">
             <h2 id="modal-header"></h2>
-            <h3>Play Again?</h3>
-            <span id="player-score"></span>
-            <span id="dealer-score"></span>
+            <div class="final-score">
+                <h4 class="green-text" id="player-score"></h4>
+                <h4 class="score-divider">-</h4>
+                <h4 class="red-text" id="dealer-score"></h4>
+            </div>
             <div class="modal-footer">
-                <button id="continue" class="modal-close waves-effect waves-light btn green">Continue</button>
+                <button id="continue" class="modal-close waves-effect waves-light btn green">Play Again</button>
             </div>
         </div>
     </section>
