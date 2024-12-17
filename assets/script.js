@@ -13,12 +13,11 @@ var playerHandTotal = 0;
 var playerScore = 0;
 
 
-
-
 // Dealer hand that will recieve values from 1-13
 var dealerHand = [];
 var dealerHandTotal = 0;
 var dealerScore = 0;
+var isHidden = true;
 
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
@@ -40,25 +39,22 @@ function loadScores() {
     
 }
 
-<<<<<<< HEAD
-=======
-}
->>>>>>> b35cf6787279a767304528384193f7b522ed8885
-
 loadScores();
 
 // Start Game
 function startGame() {
+    isHidden = true;
     playerHand = [];
     dealerHand = [];
     playerHandTotal = 0;
-    dealerHandTotal = 0;
 
     // Give 2 cards to player and dealer
     playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
     playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
     dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
-    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    var firstCard = cards[Math.floor(Math.random() * cards.length)];
+    dealerHand.push(firstCard);
+    dealerHandTotal = firstCard;
 
     checkHand();
     
@@ -73,7 +69,9 @@ function draw() {
 
 // Give the dealer cards until they are greater than or equal to 17
 function stand() {
+    isHidden = false;
     var aceCount = 0;
+    dealerHandTotal = 0;
 
     //count the first 2 cards of the dealer's hand
     for (let i = 0; i < dealerHand.length; i++) {
@@ -146,7 +144,7 @@ function updateCards(){
 
     for(let i = 0; i < dealerHand.length; i++){
         const card = document.createElement("div");
-        if(i==0)
+        if(i==0 && isHidden)
             card.textContent = ""
         else if(dealerHand[i] == 1)
             card.textContent = 'A';
