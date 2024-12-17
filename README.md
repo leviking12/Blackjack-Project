@@ -24,9 +24,9 @@
 
 ## Screenshots
 
-![alt text](<../../Markup screenshots/Screenshot 2024-12-17 121645.png>)
+![alt text](<../Markup screenshots/Screenshot 2024-12-17 121645.png>)
 
-![alt text](<../../Markup screenshots/Screenshot 2024-12-17 121724.png>)
+![alt text](<../Markup screenshots/Screenshot 2024-12-17 121724.png>)
 
 ## Link
 [Link](https://leviking12.github.io/Blackjack-Project/)
@@ -36,6 +36,6 @@ The Scrum Master - Quentin Jones
 
 The Team Leader - Levi King
 
-The Biggest Contributor - Erich Showalter
+The Biggest Contributors - Erich Showalter
 
-The Contributors - Malcolm Thomas, Joseph Llanos, Trevor Moore
+The Contributors - Malcolm Thomas, Joseph Llanos, Trevor Moore, Erich Showalter, Levi King
