@@ -36,9 +36,21 @@ function loadScores() {
 }
 
 }
+
 loadScores();
-// Gives the player and dealer 2 cards
+
+// Start Game
 function startGame() {
+    playerHand = [];
+    dealerHand = [];
+    playerHandTotal = 0;
+    dealerHandTotal = 0;
+
+    // Give 2 cards to player and dealer
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    playerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
+    dealerHand.push(cards[Math.floor(Math.random() * cards.length)]);
 
     checkHand();
     
