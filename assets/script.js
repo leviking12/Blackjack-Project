@@ -12,7 +12,6 @@ var playerHand = [];
 var playerHandTotal = 0;
 var playerScore = 0;
 
-localStorage.setItem("playerScore", JSON.stringify(playerScore))
 
 
 
@@ -20,13 +19,14 @@ localStorage.setItem("playerScore", JSON.stringify(playerScore))
 var dealerHand = [];
 var dealerHandTotal = 0;
 var dealerScore = 0;
-localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
+
 // All of the cards in the deck (11,12,13 all equal 10, and 1 equals 1 or 10)
 const cards = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
 function loadScores() {
-    localStorage.getItem("playerScore", JSON.parse(playerScore))
-    localStorage.getItem("dealerScore", JSON.parse(dealerScore))
+    playerScore = JSON.parse(localStorage.getItem("playerScore"))
+    dealerScore = JSON.parse(localStorage.getItem("dealerScore"))
+    
 
     playerWinsElem.textContent = `Player Wins: ${playerScore}`
     dealerWinsElem.textContent = `Dealer Wins: ${dealerScore}`
@@ -142,15 +142,21 @@ function currentScore() {
 //display the totals of the two players and their hands
 //if the player went over 21, they automatically lose and we don't need to see the dealer total.
 function endGame() {
-    if (playerHandTotal > dealerHandTotal && playerHandTotal <= 21) {
-        playerScore++
-    } else if (dealerHandTotal > playerHandTotal && dealerHandTotal <= 21) {
-        dealerScore++
-    } 
 
-    loadScores()
+    if (playerHandTotal > 21) {
+        dealerScore++
+    } else if (dealerHandTotal > 21) {
+        playerScore++
+    } else if (playerHandTotal > dealerHandTotal){
+        playerScore++
+    } else if (dealerHandTotal > playerHandTotal) {
+        dealerScore++
+    }
+    
+    
     localStorage.setItem("playerScore", JSON.stringify(playerScore))
     localStorage.setItem("dealerScore", JSON.stringify(dealerScore))
+    loadScores();
     
     dealerHand = [];
     dealerHandTotal = 0;
@@ -159,7 +165,8 @@ function endGame() {
 
     instance.open()
 }
-
+console.log(localStorage)
+localStorage.clear()
 
 document.getElementById('start-button').addEventListener('click', function() {
     
